@@ -13,7 +13,7 @@ The subdirectory "work" will be created if it does not already exist. In fact th
 
 The docker container will run until you exit the server. When you have finished with the server, use the GUI option
 
-    *File -> Shut Down*.
+> File -> Shut Down
 
 Then the container will be removed. The sheets you have created will persist in the *work* directory. 
 
