@@ -1,4 +1,4 @@
-# my-jupter-notebook
+# my-jupter-server
 
 Building a script to quickly launch a docker instance of a Jupyter notebook server.
 
