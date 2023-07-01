@@ -66,7 +66,7 @@ The script ``./hash.sh <password>`` will generate a new hash to give to the serv
 ### Use a Jupyter container to get a python shell with the right libraries.
 
 ```
-docker run -it --rm -v jupyter/minimal-notebook:latest python
+docker run -it --rm jupyter/minimal-notebook:latest python
 ```
 
 ### Python to generate a hash from the python shell
