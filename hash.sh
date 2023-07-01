@@ -5,8 +5,6 @@ loc=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 script="get_hash.py"
 password=${1:-password}
-#echo ${password}
-#exit
 
 jail=$(mktemp -d)
 sed s/@/${password}/1 ${loc}/${script} > ${jail}/${script}

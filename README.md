@@ -19,11 +19,8 @@ Then the container will be removed. The sheets you have created will persist in 
 
 ### Options
 
-Only one option so far, which is to supply your own password as a single parameter.
-
-```
-./run.sh <password>
-```
+* ``-w <password>`` set server password.
+* ``-W`` get prompted for the server password.
 
 ## Future Options
 
@@ -91,3 +88,28 @@ Verify password:
 -e NOTEBOOK_ARGS="--NotebookApp.password='argon2:$argon2id$v=19$m=10240,t=10,p=8$LjjLY0QdvlJyRfzyGAQ2PQ$27teXlOPu9Num2rGrlzi1eeKu+TBhQFUkVN2hVuYIMk'"
 ```
 
+## Vulnerabilities
+
+As the hash script is called with the password in the clear on the command line this represents a vulnerability as the password will appear in the process list. Likewise the password appearing in the command line for the script. So let's fix that.
+
+Fixing the password on the run script is simple. Add an option to request the password from the console instead. As we want to add options let's start that now. Using ``getopt`` allows long and short options if I want.
+
+```
+password="password"
+ARGS=$(getopt -o w:W --long pwd:,prompt -- "$@")
+eval set -- "${ARGS}"
+while true
+do
+  case $1 in
+    -w|--password) shift; password=$1;;
+    -W|--prompt) read -s -p "Password: " password; echo;;
+    --) shift; break;;
+    *) echo "Unknown option: ${1}"; exit 1;;
+  esac
+  shift
+done
+```
+
+Then move the hashing function inside the run script so we don't need to call an extra process.
+
+I can still see that we have the password in the clear when the ``sed`` command is run to insert the password into the template script. Not sure if we can avoid this.
