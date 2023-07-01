@@ -9,13 +9,13 @@ Building a script to quickly launch a docker instance of a Jupyter notebook serv
 1. Navigate to *http://localhost:8888/*.
 1. Login with the preconfigured password "password".
 
-The subdirectory "work" will be created if it does not already exist. In fact this repo currently contains a couple of my sample files, as I was looking for a safe place to keep them. This may move in future.
+The subdirectory "work" will be created if it does not already exist. In fact this repo currently contains a couple of my sample files, as I was looking for a safe place to keep them. This may move in future. Use this directory for saving anything you wish to persist beyond the lifetime of the server. Anything outside this directory will not persist.
 
 The docker container will run until you exit the server. When you have finished with the server, use the GUI option
 
 > File -> Shut Down
 
-Then the container will be removed. The sheets you have created will persist in the *work* directory. 
+Then the container will be removed. The sheets or other resources you have created in the *work* directory will persist. 
 
 ### Options
 
