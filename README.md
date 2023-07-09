@@ -21,6 +21,7 @@ Then the container will be removed. The sheets or other resources you have creat
 
 * ``-w <password>`` set server password.
 * ``-W`` get prompted for the server password.
+* ``-d <directory> | --directory=<directory>`` choose alternative work directory.
 
 ## Future Options
 

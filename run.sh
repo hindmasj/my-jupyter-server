@@ -8,13 +8,15 @@ loc=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 ##
 # Options Parsing
 password="password"
-ARGS=$(getopt -o w:W --long pwd:,prompt -- "$@")
+work=${loc}/work
+ARGS=$(getopt -o d:w:W --long directory:,pwd:,prompt -- "$@")
 eval set -- "${ARGS}"
 while true
 do
     case $1 in
         -w|--password) shift; password=$1;;
         -W|--prompt) read -s -p "Password: " password; echo;;
+		-d|--directory) shift; work=$1;;
         --) shift; break;;
         *) echo "Unknown option: ${1}"; exit 1;;
     esac
@@ -29,8 +31,8 @@ cleanup(){
 
 ##
 # Set up working area
-work=${loc}/work
 mkdir -p ${work}
+work=$(readlink -f ${work})
 
 ##
 # Hash the password
