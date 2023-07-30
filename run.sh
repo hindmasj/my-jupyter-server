@@ -6,14 +6,26 @@ loc=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 . ${loc}/common.sh
 
 ##
+# Usage
+usage(){
+    echo "Help for $(basename ${BASH_SOURCE[0]})"
+	echo
+    echo "-w|--pwd <password>  : Use password to use with server"
+    echo "-W|--prompt          : Prompt for server password"
+    echo "-d|--directory <dir> : Use dir as work directory"
+}
+
+##
 # Options Parsing
 password="password"
 work=${loc}/work
-ARGS=$(getopt -o d:w:W --long directory:,pwd:,prompt -- "$@")
+ARGS=$(getopt -o d:w:Wh --long directory:,pwd:,prompt,help -- "$@")
 if [ $? -ne 0 ]
 then
+	usage
 	exit 1
 fi
+
 eval set -- "${ARGS}"
 while true
 do
@@ -22,7 +34,7 @@ do
         -W|--prompt) read -s -p "Password: " password; echo;;
 		-d|--directory) shift; work=$1;;
         --) shift; break;;
-        *) echo "Unknown option: ${1}"; exit 1;;
+        -h|--help) usage; exit 1;;
     esac
     shift
 done
