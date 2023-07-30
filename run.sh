@@ -9,7 +9,7 @@ loc=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 # Usage
 usage(){
     echo "Help for $(basename ${BASH_SOURCE[0]})"
-	echo
+    echo
     echo "-w|--pwd <password>  : Use password to use with server"
     echo "-W|--prompt          : Prompt for server password"
     echo "-d|--directory <dir> : Use dir as work directory"
@@ -32,7 +32,7 @@ do
     case $1 in
         -w|--password) shift; password=$1;;
         -W|--prompt) read -s -p "Password: " password; echo;;
-		-d|--directory) shift; work=$1;;
+        -d|--directory) shift; work=$1;;
         --) shift; break;;
         -h|--help) usage; exit 1;;
     esac
