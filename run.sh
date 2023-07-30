@@ -10,6 +10,10 @@ loc=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 password="password"
 work=${loc}/work
 ARGS=$(getopt -o d:w:W --long directory:,pwd:,prompt -- "$@")
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
 eval set -- "${ARGS}"
 while true
 do
